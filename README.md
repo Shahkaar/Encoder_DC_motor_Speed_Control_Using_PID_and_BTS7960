@@ -12,7 +12,7 @@
 # PPR Finder
   Connect the components as shown in the image and power the arduino using the PC upload the code PPR_Finder to arduino mark a point on the motor shaft. After uploading that powering up the supply open the serial monitor and rotate the motor once the number of pulses will be visible.
   <p align="center">
-<img src="https://github.com/Shahkaar/Encoder_DC_motor_Speed_Control_Using_PID_and_BTS7960/blob/main/graphics/Blank%20board.png" width="500" height="500" />
+<img src="https://github.com/Shahkaar/Encoder_DC_motor_Speed_Control_Using_PID_and_BTS7960/blob/main/graphics/Blank_board-removebg-preview.png" width="500" height="500" />
 </p>
 # Max RPM Finder
   All the 3 codes will run on the same circuit just change the code as desired.
