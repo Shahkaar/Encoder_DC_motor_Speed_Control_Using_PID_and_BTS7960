@@ -14,5 +14,6 @@
   <p align="center">
 <img src="https://github.com/Shahkaar/Encoder_DC_motor_Speed_Control_Using_PID_and_BTS7960/blob/main/graphics/Blank%20board.png" width="500" height="500" />
 </p>
+
 # Max RPM Finder
-  All the 3 codes will run on the same circuit just change the code as desired.
+All the 3 codes will run on the same circuit just change the code as desired.
