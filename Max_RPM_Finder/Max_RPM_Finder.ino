@@ -38,7 +38,7 @@ void loop() {
   if (timeElapsed >= interval) {
    currentPosition = myEnc.read();
   long pulses = currentPosition - previousPosition;  // Number of pulses since last measurement
-  speedRPM = (pulses * 60.0) / (PPR * (timeElapsed / 1000.0)); // Calculating speed using pulses from encoder and pulse per revolution PPR of encoder disk
+  speedRPM = (pulses * 60.0) / (PPR * (timeElapsed / 1000.0)); // Calculating speed using pulses from encoder and PPR of encoder disk
 
     // Print speed in RPM to Serial Monitor
     Serial.print("Speed (RPM): ");
