@@ -3,13 +3,13 @@
 // Encoder pin definitions
 Encoder myEnc(2, 3);  // Change according to your setup
 
+// Motor driver variable
 #define RPWM 9          //Motor RPWM pin
-
 int PWM = 255;             //The PWM signal on the motor driver pin 0-255
+
 // Motor and Encoder specific values
 const int PPR = 204;   // Pulses per revolution (adjust according to your encoder spec)
 
-// Variables to store encoder pulses and speed
 // Variables to store encoder pulses and speed
 unsigned long previousTime = 0;
 unsigned long interval = 500;  // Time interval for speed calculation (in milliseconds)
