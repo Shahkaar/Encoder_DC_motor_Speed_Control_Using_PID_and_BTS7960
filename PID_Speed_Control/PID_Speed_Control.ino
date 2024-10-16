@@ -4,18 +4,18 @@
 Encoder myEnc(2, 3);  // Change according to your setup
 
 // Motor control pins
-#define RPWM 10          //Motor RPWM pin
-#define LPWM 9           //Motor LPWM pin
+#define LPWM 10          //Motor RPWM pin
+#define RPWM 9           //Motor LPWM pin
 int PWM_PIN = 0;         // PWM output pin to control motor speed (connect to motor driver)
 
 // Motor and Encoder specific values
 const int PPR = 204;   // Pulses per revolution (adjust according to your encoder spec)
 
 // PID control variables
-double Kp = 6.0;       // Proportional gain
-double Ki = 3.0;       // Integral gain for controlling overshoot
-double Kd = 0.01;       // Derivative gain
-double desiredSpeedRPM = 1000; // Setpoint: Desired speed in RPM
+double Kp = 6.0;//6.0;       // Proportional gain
+double Ki = 3.0;//3.0;       // Integral gain for controlling overshoot
+double Kd = 0.01;//0.01;       // Derivative gain
+double desiredSpeedRPM = 100; // Setpoint: Desired speed in RPM should be in range of the Max RPM of the motor
 double currentSpeedRPM = 0;   // Measured speed in RPM
 double previousError = 0;
 double integral = 0;
@@ -51,15 +51,16 @@ void loop() {
   // Calculate speed every interval (0.5 second = 500 ms)
   if (timeElapsed >= interval) {
   currentPosition = myEnc.read();
+  currentPosition = currentPosition/4;
   long pulses = currentPosition - previousPosition;  // Number of pulses since last measurement
   currentSpeedRPM = (pulses * 60.0) / (PPR * (timeElapsed / 1000.0)); // Calculating speed using pulses from encoder and pulse per revolution PPR of encoder disk
   if(direction == 1)
   {
-  currentSpeedRPM = -currentSpeedRPM;
   PWM_PIN = RPWM;
   }
   if(direction == 0)
   {
+    currentSpeedRPM = -currentSpeedRPM;
     PWM_PIN = LPWM;
   }
   double error = desiredSpeedRPM - currentSpeedRPM;  // Error = Setpoint - Actual Speed
@@ -71,17 +72,14 @@ void loop() {
   analogWrite(PWM_PIN, controlSignal);  // Apply PWM to motor
   int currspeed = int(currentSpeedRPM); // converts double variable to int
 
-    // Print speed in RPM to Serial Monitor
-    Serial.print("PWM_Pin:");
-    Serial.print(PWM_PIN);
-    Serial.print(",");    
-    Serial.print("Upper:");
-    Serial.print("1500");
+    // Print speed in RPM to Serial Monitor   
+    Serial.print("Upper: "); // ajust the upper limit according to max RPM of the motor to see the full graph
+    Serial.print("500");
     Serial.print(",");
-    Serial.print("Lower:");
-    Serial.print("100");
+    Serial.print("Lower: ");
+    Serial.print("10");
     Serial.print(",");
-    Serial.print("speed:");
+    Serial.print("speed: ");
     Serial.println(currspeed);
     previousError = error;
   }
